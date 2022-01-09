@@ -1,5 +1,6 @@
 use crate::{mock::*, Error};
 use frame_support::{assert_err, assert_ok};
+use super::*;
 
 #[test]
 fn create_proof_normal() {
@@ -7,6 +8,7 @@ fn create_proof_normal() {
 		// Dispatch a signed extrinsic.
 		assert_ok!(PoeModule::create_claim(Origin::signed(1), vec![0x1;8]));
 		assert_eq!(PoeModule::get_proof(&vec![0x1;8]).0, 1);
+
 	});
 }
 

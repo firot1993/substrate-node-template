@@ -1,5 +1,5 @@
 use node_template_runtime::{
-	AccountId, AuraConfig, BalancesConfig, GenesisConfig, GrandpaConfig, Signature, SudoConfig,
+	AccountId, AuraConfig, BalancesConfig, GenesisConfig, GrandpaConfig, Signature, SudoConfig, KittiesConfig,
 	SystemConfig, WASM_BINARY,
 };
 use sc_service::ChainType;
@@ -151,5 +151,8 @@ fn testnet_genesis(
 			key: root_key,
 		},
 		transaction_payment: Default::default(),
+		kitties: KittiesConfig {
+			kitties: vec![],
+		},
 	}
 }

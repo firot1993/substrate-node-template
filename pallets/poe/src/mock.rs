@@ -27,6 +27,7 @@ parameter_types! {
 	pub const SS58Prefix: u8 = 42;
 	pub const MinNickLength: u32 = 8;
     // Maximum bounds on storage are important to secure your chain.
+	#[derive(Debug)]
     pub const MaxNickLength: u32 = 32;
 }
 
@@ -61,6 +62,8 @@ impl pallet_poe::Config for Test {
 	type MinLength = MinNickLength;
 	type MaxLength = MaxNickLength;
 }
+
+
 
 // Build genesis storage according to the mock runtime.
 pub fn new_test_ext() -> sp_io::TestExternalities {

@@ -33,6 +33,7 @@ pub use frame_support::{
 	},
 	StorageValue,
 };
+use frame_support::traits::LockIdentifier;
 pub use pallet_balances::Call as BalancesCall;
 pub use pallet_timestamp::Call as TimestampCall;
 use pallet_transaction_payment::CurrencyAdapter;
@@ -280,8 +281,32 @@ impl pallet_template::Config for Runtime {
 	type Event = Event;
 }
 
-impl pallet_poe::Config for Runtime {
+// impl pallet_poe::Config for Runtime {
+// 	type Event = Event;
+// }
+
+parameter_types! {              // <- add this macro
+    // One can own at most 9,999 Kitties
+    pub const MaxKittyOwned: u32 = 9999;
+	pub const NeedLockBalance: u32 = 10;
+}
+
+
+impl pallet_kitties::Config for Runtime{
+	type Currency = Balances;
 	type Event = Event;
+	type KittyRandomness = RandomnessCollectiveFlip;
+	type MaxKittyOwned = MaxKittyOwned;
+	type NeedLockBalance = NeedLockBalance;
+	type KittyIndex = u64;
+
+	fn get_kitty_index_from_u64(kitty_index: u64) -> Self::KittyIndex {
+		kitty_index
+	}
+
+	fn get_u64_from_kitty_index(kitty_index: Self::KittyIndex) -> u64 {
+		kitty_index
+	}
 }
 
 
@@ -302,7 +327,8 @@ construct_runtime!(
 		Sudo: pallet_sudo,
 		// Include the custom logic from the pallet-template in the runtime.
 		TemplateModule: pallet_template,
-		PoeModule: pallet_poe,
+		Kitties: pallet_kitties,
+		// PoeModule: pallet_poe,
 	}
 );
 
