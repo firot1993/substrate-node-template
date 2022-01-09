@@ -2,7 +2,6 @@ use frame_support::{assert_err, assert_ok};
 
 use crate::{Error, mock::*};
 
-use super::*;
 
 #[test]
 fn test_create_kitty() {
@@ -63,8 +62,8 @@ fn test_buy_kitty() {
 		assert_err!(KittiesModule::buy_kitty(Origin::signed(1),1, 6), Error::<Test>::BuyerIsKittyOwner);
 		assert_err!(KittiesModule::buy_kitty(Origin::signed(2),1, 6), Error::<Test>::KittyBidPriceTooLow);
 		assert_err!(KittiesModule::buy_kitty(Origin::signed(2),1, 12), Error::<Test>::NotEnoughBalance);
-		assert_err!(KittiesModule::buy_kitty(Origin::signed(3),1, 100), Error::<Test>::NotEnoughBalance);
-		assert_err!(KittiesModule::buy_kitty(Origin::signed(3),1, 10), Error::<Test>::ExceedMaxKittyOwned);
+		assert_err!(KittiesModule::buy_kitty(Origin::signed(3),1, 25), Error::<Test>::NotEnoughBalance);
+		assert_err!(KittiesModule::buy_kitty(Origin::signed(3),1, 12), Error::<Test>::ExceedMaxKittyOwned);
 	});
 }
 

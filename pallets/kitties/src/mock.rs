@@ -1,8 +1,5 @@
 use crate as pallet_kitties;
 use frame_support::parameter_types;
-use frame_support::traits::LockIdentifier;
-use crate::mock::sp_api_hidden_includes_construct_runtime::hidden_include::traits::Hooks;
-
 use frame_system as system;
 use sp_core::H256;
 use sp_runtime::{
@@ -120,12 +117,12 @@ pub fn new_test_ext() -> sp_io::TestExternalities {
 
 
 
-pub fn run_to_block(n: u64) {
-	while System::block_number() < n {
-		if System::block_number() >= 1 {
-			System::on_finalize(System::block_number());
-		}
-		System::set_block_number(System::block_number() + 1);
-		System::on_initialize(System::block_number());
-	}
-}
+// pub fn run_to_block(n: u64) {
+// 	while System::block_number() < n {
+// 		if System::block_number() >= 1 {
+// 			System::on_finalize(System::block_number());
+// 		}
+// 		System::set_block_number(System::block_number() + 1);
+// 		System::on_initialize(System::block_number());
+// 	}
+// }
