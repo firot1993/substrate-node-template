@@ -298,15 +298,7 @@ impl pallet_kitties::Config for Runtime{
 	type KittyRandomness = RandomnessCollectiveFlip;
 	type MaxKittyOwned = MaxKittyOwned;
 	type NeedLockBalance = NeedLockBalance;
-	type KittyIndex = u64;
-
-	fn get_kitty_index_from_u64(kitty_index: u64) -> Self::KittyIndex {
-		kitty_index
-	}
-
-	fn get_u64_from_kitty_index(kitty_index: Self::KittyIndex) -> u64 {
-		kitty_index
-	}
+	type KittyIndex = u32;
 }
 
 

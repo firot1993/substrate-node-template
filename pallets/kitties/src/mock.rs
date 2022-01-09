@@ -69,15 +69,7 @@ impl pallet_kitties::Config for Test{
 	type KittyRandomness = RandomnessCollectiveFlip;
 	type MaxKittyOwned = MaxKittyOwned;
 	type NeedLockBalance = NeedLockBalance;
-	type KittyIndex = u64;
-
-	fn get_kitty_index_from_u64(kitty_index: u64) -> Self::KittyIndex {
-		kitty_index
-	}
-
-	fn get_u64_from_kitty_index(kitty_index: Self::KittyIndex) -> u64 {
-		kitty_index
-	}
+	type KittyIndex = u32;
 }
 
 impl pallet_randomness_collective_flip::Config for Test {}
@@ -108,7 +100,7 @@ impl pallet_balances::Config for Test {
 pub fn new_test_ext() -> sp_io::TestExternalities {
 	let mut t = system::GenesisConfig::default().build_storage::<Test>().unwrap();
 	pallet_balances::GenesisConfig::<Test> {
-		balances: vec![(1, 100), (2, 0), (3, 22), (4, 100), (5, 100)],
+		balances: vec![(1, 100), (2, 0), (3, 40), (4, 100), (5, 100)],
 	}
 	.assimilate_storage(&mut t)
 	.unwrap();

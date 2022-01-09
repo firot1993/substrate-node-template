@@ -78,6 +78,8 @@ std = [
 	'pallet-randomness-collective-flip/std',
 	'pallet-balances/std',
 	'sp-std/std',
+	'sp-runtime/std',
+	'sp-io/std',
 ]
 try-runtime = ['frame-support/try-runtime']
 
